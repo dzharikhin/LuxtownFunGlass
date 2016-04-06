@@ -1,0 +1,24 @@
+{
+    "content_scripts": [
+        {
+            "js": [
+                "content.js"
+            ],
+            "matches": [
+                "https://sentinel2.luxoft.com/*/LUXTOWN/*"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "description": "Brand new vision of plain old LuxTwon",
+    "icons": {
+        "128": "icon128.png"
+    },
+    "manifest_version": 2,
+    "name": "Luxtown Fun Glass",
+    "permissions": [
+        "storage",
+        "https://sentinel2.luxoft.com/*/LUXTOWN/*"
+    ],
+    "version": "1.0"
+}
