@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Luxtown Fun Glass",
     "description": "Brand new vision of plain old LuxTwon", 
-    "version": "1.1", 
+    "version": "1.1",
     "permissions": [
         "storage",
         "https://sentinel2.luxoft.com/*"
@@ -10,7 +10,7 @@
     "background": {
         "scripts": ["background.js"],
         "persistent": false
-    },  
+    },
     "page_action": {
         "default_icon": "icon128.png"
     },
@@ -48,6 +48,9 @@
                 "https://sentinel2.luxoft.com/*/PAD/*",
                 "https://sentinel2.luxoft.com/*/LC/*",
                 "https://sentinel2.luxoft.com/*/~*"
+            ],
+            "exclude_matches": [
+                "https://sentinel2.luxoft.com/*Luxtown+Fun+Glass+-+Drive+The+Change*"
             ],
             "js": [
                 "content.js"
