@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Luxtown Fun Glass",
     "description": "Brand new vision of plain old LuxTwon", 
-    "version": "1.1",
+    "version": "1.2",
     "permissions": [
         "storage",
         "https://sentinel2.luxoft.com/*"
