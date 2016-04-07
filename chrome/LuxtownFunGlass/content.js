@@ -91,14 +91,16 @@ if (Promise && MutationObserver && localStorage && DOMParser) {
             } 
         };
         if(target && target.length > 0) {
-            sendStats();
-            var observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation){
-                    replaceFunction(mutation.target);
-                });    
+            chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+                sendStats();
+                var observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        replaceFunction(mutation.target);
+                    });    
+                });
+                replaceFunction(target[0]);
+                observer.observe(target[0], {subtree: true, childList: true});
             });
-            replaceFunction(target[0]);
-            observer.observe(target[0], {subtree: true, childList: true});
         }
     }); 
 }
