@@ -1,0 +1,15 @@
+{
+  "title": "Luxtown Fun Glass",
+  "name": "luxtownfunglass",
+  "version": "0.0.1",
+  "description": "Brand new vision of plain old LuxTown",
+  "main": "index.js",
+  "author": "JRX",
+  "engines": {
+    "firefox": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "jetpack"
+  ]
+}
