@@ -64,24 +64,23 @@ if (Promise && MutationObserver && localStorage && DOMParser) {
       getFromLocalStorage(TITLE);
     });
     replacementsReady.then(function(replacementArray) {
-        var replaceFunction = function(element) {
-            var capitalizeFirstChar = function(value, needToCap) {
-                return needToCap ? value.charAt(0).toUpperCase() + value.slice(1) : value;
-            },
-            applyReplacements = function(originalValue) {
-                var startsWithCapital = originalValue[0] === originalValue[0].toUpperCase();
-                for (var i = 0, len = replacementArray.length; i < len; i++) {
-                    originalValue = originalValue.replace(replacementArray[i][0], capitalizeFirstChar(replacementArray[i][1], startsWithCapital));
-                }
-                return originalValue;
-            };
-            for (var i = 0, children = element.childNodes, end = children.length; i < end; i++) {
-                var elem=children[i];
-                if(elem.nodeType === Node.TEXT_NODE) {
-                    elem.nodeValue = applyReplacements(elem.nodeValue);
-                } else {
+        var capitalizeFirstChar = function(value, needToCap) {
+            return needToCap ? value.charAt(0).toUpperCase() + value.slice(1) : value;
+        },
+        applyReplacements = function(originalValue) {
+            var startsWithCapital = originalValue[0] === originalValue[0].toUpperCase();
+            for (var i = 0, len = replacementArray.length; i < len; i++) {
+                originalValue = originalValue.replace(replacementArray[i][0], capitalizeFirstChar(replacementArray[i][1], startsWithCapital));
+            }
+            return originalValue;
+        },
+        replaceFunction = function(element) {
+            if(element.nodeType === Node.TEXT_NODE) {
+                element.nodeValue = applyReplacements(element.nodeValue);
+            } else {
+                Array.prototype.forEach.call(element.childNodes, function(elem) {
                     replaceFunction(elem);
-                }
+                });
             }
         },
         target = document.getElementsByTagName('body'),
@@ -91,11 +90,13 @@ if (Promise && MutationObserver && localStorage && DOMParser) {
             } 
         };
         if(target && target.length > 0) {
-            chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+            chrome.runtime.sendMessage({greeting: 'hello'}, function(response) {
                 sendStats();
                 var observer = new MutationObserver(function(mutations) {
                     mutations.forEach(function(mutation) {
-                        replaceFunction(mutation.target);
+                        Array.prototype.forEach.call(mutation.addedNodes, function(addedNode) {
+                            replaceFunction(addedNode);
+                        });
                     });    
                 });
                 replaceFunction(target[0]);
