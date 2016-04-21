@@ -80,11 +80,11 @@ if (Promise && MutationObserver && localStorage && DOMParser) {
             }
 
             const { arrayWords, mapWords } = replacementArray.reduce((memo, item) => {
-                memo.arrayWorlds.push(item[0]);
-                memo.mapWorlds[item[0]] = item[1];
+                memo.arrayWords.push(item[0]);
+                memo.mapWords[item[0]] = item[1];
 
                 return memo;
-            }, { arrayWorlds: [], mapWorlds: {} });
+            }, { arrayWords: [], mapWords: {} });
 
             const regExp = new RegExp('(' + arrayWords.join('|') + ')', 'gim');
 
