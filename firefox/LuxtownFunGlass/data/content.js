@@ -102,7 +102,7 @@ if (Promise && MutationObserver && localStorage && DOMParser) {
              */
             function applyReplacements(originalValue) {
                 return originalValue.replace(regExp, (str, key) => {
-                    return /^[A-Z]/.test(str) ? capitalizeFirstChar(mapWords[key.toLowerCase()]) : str;
+                    return /^[A-Z]/.test(str) ? capitalizeFirstChar(mapWords[key.toLowerCase()]) : mapWords[key.toLowerCase()];
                 });
             }
 
